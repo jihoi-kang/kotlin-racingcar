@@ -20,19 +20,7 @@ object Calculator {
         var operator: Expression.Operator? = null
         this.forEach { expression ->
             when (expression) {
-                is Expression.Operand -> {
-                    result = when (operator) {
-                        Expression.Operator.Add -> result + expression.number
-                        Expression.Operator.Subtract -> result - expression.number
-                        Expression.Operator.Multiply -> result * expression.number
-                        Expression.Operator.Divide ->
-                            if (expression.number == 0) throw IllegalStateException("0으로 나눌 수 없습니다")
-                            else result / expression.number
-
-                        null -> expression.number
-                    }
-                }
-
+                is Expression.Operand -> result = operator?.execute(result, expression.number) ?: expression.number
                 is Expression.Operator -> operator = expression
             }
         }

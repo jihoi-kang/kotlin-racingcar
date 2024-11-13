@@ -1,12 +1,27 @@
 package calculator
 
 sealed class Expression {
+
     data class Operand(val number: Int) : Expression()
-    sealed class Operator : Expression() {
-        data object Add : Operator()
-        data object Subtract : Operator()
-        data object Multiply : Operator()
-        data object Divide : Operator()
+
+    sealed class Operator : Expression(), Calculable {
+        data object Add : Operator() {
+            override fun execute(first: Int, second: Int): Int = first + second
+        }
+
+        data object Subtract : Operator() {
+            override fun execute(first: Int, second: Int): Int = first - second
+        }
+
+        data object Multiply : Operator() {
+            override fun execute(first: Int, second: Int): Int = first * second
+        }
+
+        data object Divide : Operator() {
+            override fun execute(first: Int, second: Int): Int =
+                if (second == 0) throw IllegalStateException("0으로 나눌 수 없습니다")
+                else first / second
+        }
 
         companion object {
             private const val ADD_OPERATOR_STR = "+"
@@ -23,4 +38,5 @@ sealed class Expression {
             }
         }
     }
+
 }
