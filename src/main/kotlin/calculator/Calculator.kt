@@ -2,8 +2,7 @@ package calculator
 
 object Calculator {
     fun calculate(input: String?): Int {
-        requireNotNull(input) { "입력값이 비어있을 수 없습니다" }
-        require(input.isNotBlank()) { "입력값이 비어있을 수 없습니다" }
+        require(!input.isNullOrBlank()) { "입력값이 비어있을 수 없습니다" }
         return input.parse().calculate()
     }
 
