@@ -84,4 +84,37 @@ class CalculatorTest {
         // then
         assertThat(result).isEqualTo(10)
     }
+
+    @Test
+    fun `사칙 연산 중 연산자가 두번 연속으로 중복되어 나오면 에러를 발생해야 한다`() {
+        // given
+        val input = "2 + / 3"
+
+        // when & then
+        assertThatThrownBy { Calculator.calculate(input) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining("연산자 혹은 피연산자가 연속되어 중복으로 값을 입력할 수 없습니다")
+    }
+
+    @Test
+    fun `사칙 연산 중 피연산자가 두번 연속으로 중복되어 나오면 에러를 발생해야 한다`() {
+        // given
+        val input = "2 + 3 5 + 3"
+
+        // when & then
+        assertThatThrownBy { Calculator.calculate(input) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining("연산자 혹은 피연산자가 연속되어 중복으로 값을 입력할 수 없습니다")
+    }
+
+    @Test
+    fun `사칙 연산 중 연산자가 먼저 나오면 에러를 발생해야 한다`() {
+        // given
+        val input = "+ 3 + 3"
+
+        // when & then
+        assertThatThrownBy { Calculator.calculate(input) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining("피연산자를 먼저 입력해주세요")
+    }
 }
