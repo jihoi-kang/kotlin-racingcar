@@ -8,18 +8,10 @@ object Calculator {
     }
 
     private fun String.parse(): List<Expression> = this.split(" ").map {
-        when (it) {
-            "+" -> Expression.Operator.Add
-            "-" -> Expression.Operator.Subtract
-            "*" -> Expression.Operator.Multiply
-            "/" -> Expression.Operator.Divide
-            else -> {
-                try {
-                    Expression.Operand(it.toInt())
-                } catch (e: NumberFormatException) {
-                    throw IllegalArgumentException("연산자 및 피연산자 외의 값을 입력할 수 없습니다")
-                }
-            }
+        Expression.Operator.of(it) ?: runCatching<Expression.Operand> {
+            Expression.Operand(it.toInt())
+        }.getOrElse {
+            throw IllegalArgumentException("연산자 및 피연산자 외의 값을 입력할 수 없습니다")
         }
     }
 
