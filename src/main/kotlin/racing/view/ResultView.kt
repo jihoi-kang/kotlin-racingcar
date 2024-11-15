@@ -3,11 +3,14 @@ package racing.view
 import racing.model.RacingCar
 
 object ResultView {
-    fun print(cars: List<RacingCar>) {
-        cars.forEach { racingCar ->
-            println(racingCar.advancedNumber.toHyphen())
-        }
+    fun printStart() {
+        println("실행 결과")
     }
 
-    private fun Int.toHyphen(): String = "-".repeat(this)
+    fun print(cars: List<RacingCar>) {
+        cars.forEach { println(it.advancedNumber.toHyphenString()) }
+        println()
+    }
+
+    private fun Int.toHyphenString(): String = "-".repeat(this)
 }
