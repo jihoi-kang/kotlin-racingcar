@@ -70,7 +70,7 @@ class CalculatorTest {
         // when * then
         assertThatThrownBy { Calculator.calculate(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("연산자 및 피연산자 외의 값을 입력할 수 없습니다")
+            .hasMessageContaining("잘못된 형식의 사칙연산 입니다")
     }
 
     @Test
@@ -93,7 +93,7 @@ class CalculatorTest {
         // when & then
         assertThatThrownBy { Calculator.calculate(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("연산자 혹은 피연산자가 연속되어 중복으로 값을 입력할 수 없습니다")
+            .hasMessageContaining("잘못된 형식의 사칙연산 입니다")
     }
 
     @Test
@@ -104,7 +104,7 @@ class CalculatorTest {
         // when & then
         assertThatThrownBy { Calculator.calculate(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("연산자 혹은 피연산자가 연속되어 중복으로 값을 입력할 수 없습니다")
+            .hasMessageContaining("잘못된 형식의 사칙연산 입니다")
     }
 
     @Test
@@ -115,6 +115,17 @@ class CalculatorTest {
         // when & then
         assertThatThrownBy { Calculator.calculate(input) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("피연산자를 먼저 입력해주세요")
+            .hasMessageContaining("잘못된 형식의 사칙연산 입니다")
+    }
+
+    @Test
+    fun `사칙 연산 중 연산자가 가장 마지막에 나오면 에러를 발생해야 한다`() {
+        // given
+        val input = "3 + 3 -"
+
+        // when & then
+        assertThatThrownBy { Calculator.calculate(input) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining("잘못된 형식의 사칙연산 입니다")
     }
 }
