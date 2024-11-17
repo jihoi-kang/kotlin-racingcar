@@ -13,14 +13,13 @@ class RacingGame {
         ResultView.printStart()
 
         repeat(input.tryNumber) {
-            cars.forEach { racingCar ->
-                if (shouldAdvance()) {
-                    racingCar.advance()
-                }
-            }
-
+            tryAdvance(cars)
             ResultView.print(cars)
         }
+    }
+
+    private fun tryAdvance(cars: List<RacingCar>) {
+        cars.forEach { racingCar -> if (shouldAdvance()) racingCar.advance() }
     }
 
     private fun shouldAdvance() = Random.nextInt(MAX_RANDOM_ADVANCED) >= MOVE_ADVANCED_CONDITION
