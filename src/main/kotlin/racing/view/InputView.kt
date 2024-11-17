@@ -1,9 +1,9 @@
 package racing.view
 
-import racing.model.Input
+import racing.model.RacingGameParams
 
 object InputView {
-    fun getInput(): Input = Input(showAndGetCarNumberInput(), showAndGetTryNumberInput())
+    fun getParams(): RacingGameParams = RacingGameParams(showAndGetCarNumberInput(), showAndGetTryNumberInput())
 
     private fun showAndGetCarNumberInput(): Int {
         println("자동차 대수는 몇 대인가요?")

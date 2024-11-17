@@ -1,6 +1,6 @@
 package racing.model
 
-data class Input(
+data class RacingGameParams(
     val carNumber: Int,
     val tryNumber: Int,
 )

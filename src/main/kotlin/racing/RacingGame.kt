@@ -1,18 +1,18 @@
 package racing
 
-import racing.model.Input
 import racing.model.RacingCar
+import racing.model.RacingGameParams
 import racing.view.InputView
 import racing.view.ResultView
 import kotlin.random.Random
 
 class RacingGame {
 
-    fun start(input: Input) {
-        val cars = List(input.carNumber) { RacingCar(it) }
+    fun start(params: RacingGameParams) {
+        val cars = List(params.carNumber) { RacingCar(it) }
         ResultView.printStart()
 
-        repeat(input.tryNumber) {
+        repeat(params.tryNumber) {
             tryAdvance(cars)
             ResultView.print(cars)
         }
@@ -32,7 +32,7 @@ class RacingGame {
 }
 
 fun main() {
-    val input = InputView.getInput()
+    val params = InputView.getParams()
     val racingGame = RacingGame()
-    racingGame.start(input)
+    racingGame.start(params)
 }
