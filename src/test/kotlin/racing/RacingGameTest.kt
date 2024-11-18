@@ -3,6 +3,7 @@ package racing
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import racing.model.RacingCar
+import racing.util.DefaultNumberGenerator
 import racing.util.NumberGenerator
 
 class RacingGameTest {
@@ -35,6 +36,23 @@ class RacingGameTest {
 
         // then
         assertThat(racingGame.cars[0].advancedNumber).isEqualTo(0)
+    }
+
+    @Test
+    fun `우승자는 한명 이상일 수 있다`() {
+        // given
+        val cars = listOf(
+            RacingCar(name = "pobi", _advancedNumber = 5),
+            RacingCar(name = "crong", _advancedNumber = 5),
+            RacingCar(name = "honux", _advancedNumber = 3),
+        )
+        val racingGame = RacingGame(cars, DefaultNumberGenerator)
+
+        // when
+        val winners = racingGame.getWinners()
+
+        // then
+        assertThat(winners.size).isEqualTo(2)
     }
 
 }

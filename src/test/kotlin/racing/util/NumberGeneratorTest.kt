@@ -8,7 +8,7 @@ class NumberGeneratorTest {
     @Test
     fun `반환값을 지정할 수 있다`() {
         // given
-        val generator = object: NumberGenerator {
+        val generator = object : NumberGenerator {
             override fun generate(max: Int): Int = 4
         }
 

@@ -12,5 +12,9 @@ object ResultView {
         println()
     }
 
+    fun printWinner(winnerCars: List<RacingCar>) {
+        println("${winnerCars.joinToString(", ") { it.name }}가 최종 우승했습니다.")
+    }
+
     private fun Int.toHyphenString(): String = "-".repeat(this)
 }
