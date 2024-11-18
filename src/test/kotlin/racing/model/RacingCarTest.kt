@@ -8,7 +8,7 @@ class RacingCarTest {
     @Test
     fun `0보 전진한 레이싱카가 전진하면 1이 되어야 한다`() {
         // given
-        val racingCar = RacingCar(0)
+        val racingCar = RacingCar("jay")
 
         // when
         racingCar.advance()

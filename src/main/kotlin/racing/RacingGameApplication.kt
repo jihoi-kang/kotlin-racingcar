@@ -7,12 +7,13 @@ import kotlin.random.Random
 
 class RacingGameApplication {
 
+    private val numberGenerator = object : NumberGenerator {
+        override fun generate(max: Int): Int = Random.nextInt(max)
+    }
+
     fun run() {
         val params = InputView.getParams()
-        val numberGenerator = object : NumberGenerator {
-            override fun generate(max: Int): Int = Random.nextInt(max)
-        }
-        val racingGame = RacingGame(params.carNumber, numberGenerator)
+        val racingGame = RacingGame(params.cars, numberGenerator)
 
         ResultView.printStart()
         repeat(params.tryNumber) {

@@ -8,7 +8,7 @@ object ResultView {
     }
 
     fun print(cars: List<RacingCar>) {
-        cars.forEach { println(it.advancedNumber.toHyphenString()) }
+        cars.forEach { println("${it.name}: ${it.advancedNumber.toHyphenString()}") }
         println()
     }
 

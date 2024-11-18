@@ -2,6 +2,7 @@ package racing
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import racing.model.RacingCar
 import racing.util.NumberGenerator
 
 class RacingGameTest {
@@ -10,7 +11,7 @@ class RacingGameTest {
     fun `숫자가 4이상이면 전진해야만 한다`() {
         // given
         val randomNumber = 4
-        val racingGame = RacingGame(1, object : NumberGenerator {
+        val racingGame = RacingGame(listOf(RacingCar("jay")), object : NumberGenerator {
             override fun generate(max: Int): Int = randomNumber
         })
 
@@ -25,7 +26,7 @@ class RacingGameTest {
     fun `숫자가 4미만이면 전진하지 않아야 한다`() {
         // given
         val randomNumber = 3
-        val racingGame = RacingGame(1, object : NumberGenerator {
+        val racingGame = RacingGame(listOf(RacingCar("jay")), object : NumberGenerator {
             override fun generate(max: Int): Int = randomNumber
         })
 

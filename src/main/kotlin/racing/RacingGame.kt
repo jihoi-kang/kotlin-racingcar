@@ -4,10 +4,9 @@ import racing.model.RacingCar
 import racing.util.NumberGenerator
 
 class RacingGame(
-    carNumber: Int,
+    val cars: List<RacingCar>,
     private val numberGenerator: NumberGenerator,
 ) {
-    val cars = List(carNumber) { RacingCar(it) }
 
     fun tryAdvance() {
         cars.forEach { racingCar -> if (shouldAdvance()) racingCar.advance() }
