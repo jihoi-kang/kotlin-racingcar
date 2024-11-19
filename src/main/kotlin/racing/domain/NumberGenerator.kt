@@ -1,4 +1,4 @@
-package racing.util
+package racing.domain
 
 import kotlin.random.Random
 
