@@ -4,10 +4,12 @@ import racing.model.RacingCar
 import racing.util.NumberGenerator
 
 class RacingGame(
-    carNumber: Int,
+    val cars: List<RacingCar>,
     private val numberGenerator: NumberGenerator,
 ) {
-    val cars = List(carNumber) { RacingCar(it) }
+
+    fun getWinners(): List<RacingCar> =
+        cars.filter { it.advancedNumber == cars.maxOf { it.advancedNumber } }
 
     fun tryAdvance() {
         cars.forEach { racingCar -> if (shouldAdvance()) racingCar.advance() }
