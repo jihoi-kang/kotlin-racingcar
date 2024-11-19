@@ -8,8 +8,10 @@ class RacingGame(
     private val numberGenerator: NumberGenerator,
 ) {
 
-    fun getWinners(): List<RacingCar> =
-        cars.filter { it.advancedNumber == cars.maxOf { it.advancedNumber } }
+    fun getWinners(): List<RacingCar> {
+        val maxAdvancedNumber = cars.maxOf { it.advancedNumber }
+        return cars.filter { it.advancedNumber == maxAdvancedNumber }
+    }
 
     fun tryAdvance() {
         cars.forEach { racingCar -> if (shouldAdvance()) racingCar.advance() }
