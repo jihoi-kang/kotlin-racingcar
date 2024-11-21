@@ -21,9 +21,9 @@ class RacingGameController {
             advanceChecker = AdvanceCheckerImpl(DefaultNumberGenerator)
         )
 
-        racingGame.play()
-        ResultView.printResult(racingGame.recorder.records)
-        ResultView.printWinner(racingGame.getWinner())
+        val gameResult = racingGame.play()
+        ResultView.printResult(gameResult.records)
+        ResultView.printWinner(gameResult.winner)
     }
 
 }

@@ -19,10 +19,10 @@ class RacingGameTest {
         )
 
         // when
-        racingGame.play()
+        val result = racingGame.play()
 
         // then
-        assertThat(racingGame.recorder.records.size).isEqualTo(tryNumber)
+        assertThat(result.records.size).isEqualTo(tryNumber)
     }
 
     @Test
@@ -39,10 +39,10 @@ class RacingGameTest {
         )
 
         // when
-        racingGame.play()
+        val result = racingGame.play()
 
         // then
-        assertThat(racingGame.cars[0].advancedNumber).isEqualTo(1)
+        assertThat(result.records[0].cars[0].advancedNumber).isEqualTo(1)
     }
 
     @Test
@@ -59,10 +59,10 @@ class RacingGameTest {
         )
 
         // when
-        racingGame.play()
+        val result = racingGame.play()
 
         // then
-        assertThat(racingGame.cars[0].advancedNumber).isEqualTo(0)
+        assertThat(result.records[0].cars[0].advancedNumber).isEqualTo(0)
     }
 
 }
