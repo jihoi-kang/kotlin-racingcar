@@ -1,6 +1,6 @@
 package racing.controller
 
-import racing.domain.AdvanceChecker
+import racing.domain.AdvanceCheckerImpl
 import racing.domain.AdvanceRecorder
 import racing.domain.DefaultNumberGenerator
 import racing.domain.RacingGame
@@ -18,7 +18,7 @@ class RacingGameController {
             recorder = AdvanceRecorder(),
             tryChecker = TryChecker(params.tryNumber),
             winnerFinder = RacingGameWinnerFinder(),
-            advanceChecker = AdvanceChecker(DefaultNumberGenerator)
+            advanceChecker = AdvanceCheckerImpl(DefaultNumberGenerator)
         )
 
         racingGame.play()

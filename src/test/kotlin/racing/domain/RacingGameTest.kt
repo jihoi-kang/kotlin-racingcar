@@ -15,7 +15,7 @@ class RacingGameTest {
             recorder = AdvanceRecorder(),
             tryChecker = TryChecker(tryNumber),
             winnerFinder = RacingGameWinnerFinder(),
-            advanceChecker = AdvanceChecker(DefaultNumberGenerator)
+            advanceChecker = AdvanceCheckerImpl(DefaultNumberGenerator)
         )
 
         // when
@@ -26,19 +26,16 @@ class RacingGameTest {
     }
 
     @Test
-    fun `숫자가 4이상이면 전진해야만 한다`() {
+    fun `전진 확인자가 True이면 전진해야만 한다`() {
         // given
-        val randomNumber = 4
         val racingGame = RacingGame(
             cars = listOf(RacingCar("jay")),
             recorder = AdvanceRecorder(),
             tryChecker = TryChecker(1),
             winnerFinder = RacingGameWinnerFinder(),
-            advanceChecker = AdvanceChecker(
-                object : NumberGenerator {
-                    override fun generate(max: Int): Int = randomNumber
-                },
-            )
+            advanceChecker = object : AdvanceChecker {
+                override fun shouldAdvance(): Boolean = true
+            }
         )
 
         // when
@@ -49,19 +46,16 @@ class RacingGameTest {
     }
 
     @Test
-    fun `숫자가 4미만이면 전진하지 않아야 한다`() {
+    fun `전진 확인자가 False이면 전진하지 않아야 한다`() {
         // given
-        val randomNumber = 3
         val racingGame = RacingGame(
             cars = listOf(RacingCar("jay")),
             recorder = AdvanceRecorder(),
             tryChecker = TryChecker(1),
             winnerFinder = RacingGameWinnerFinder(),
-            advanceChecker = AdvanceChecker(
-                object : NumberGenerator {
-                    override fun generate(max: Int): Int = randomNumber
-                },
-            )
+            advanceChecker = object : AdvanceChecker {
+                override fun shouldAdvance(): Boolean = false
+            }
         )
 
         // when
