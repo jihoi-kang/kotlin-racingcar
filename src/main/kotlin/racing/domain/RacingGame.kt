@@ -17,7 +17,7 @@ class RacingGame(
         }
 
         return GameResult(
-            records = recorder.records,
+            records = recorder.records(),
             winner = winnerFinder.find(cars),
         )
     }

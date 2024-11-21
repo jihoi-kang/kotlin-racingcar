@@ -3,15 +3,13 @@ package racing.domain
 import racing.model.RacingCar
 
 class AdvanceRecorder(
-    records: List<AdvanceRecord> = listOf(),
+    private val records: MutableList<AdvanceRecord> = mutableListOf(),
 ) {
-    var records: List<AdvanceRecord> = records
-        private set
+
+    fun records(): List<AdvanceRecord> = records.toList()
 
     fun note(cars: List<RacingCar>) {
-        records = records.toMutableList().apply {
-            add(AdvanceRecord(cars = copy(cars)))
-        }
+        records.add(AdvanceRecord(cars = copy(cars)))
     }
 
     private fun copy(cars: List<RacingCar>) =
