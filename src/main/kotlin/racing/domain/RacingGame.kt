@@ -4,16 +4,22 @@ import racing.model.RacingCar
 
 class RacingGame(
     val cars: List<RacingCar>,
+    val recorder: AdvanceRecorder,
     private val tryChecker: TryChecker,
     private val winnerFinder: RacingGameWinnerFinder,
     private val advanceChecker: AdvanceChecker,
 ) {
 
+    fun play() {
+        while (tryChecker.hasTryNumber()) {
+            tryAdvance()
+            recorder.note(cars)
+        }
+    }
+
     fun getWinner(): List<RacingCar> = winnerFinder.find(cars)
 
-    fun hasTryNumber() = tryChecker.hasTryNumber()
-
-    fun tryAdvance() {
+    private fun tryAdvance() {
         cars.forEach { racingCar -> racingCar.tryAdvance() }
         tryChecker.tried()
     }

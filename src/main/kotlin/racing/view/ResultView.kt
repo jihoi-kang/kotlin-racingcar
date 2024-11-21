@@ -1,14 +1,25 @@
 package racing.view
 
+import racing.domain.AdvanceRecord
 import racing.model.RacingCar
 
 object ResultView {
-    fun printStart() {
+    fun printResult(records: List<AdvanceRecord>) {
         println("실행 결과")
+        printRecords(records)
+        println()
     }
 
-    fun print(cars: List<RacingCar>) {
-        cars.forEach { println("${it.name}: ${it.advancedNumber.toHyphenString()}") }
+    private fun printRecords(records: List<AdvanceRecord>) {
+        records.forEach {
+            printCars(it.cars)
+        }
+    }
+
+    private fun printCars(cars: List<RacingCar>) {
+        cars.forEach {
+            println("${it.name}: ${it.advancedNumber.toHyphenString()}")
+        }
         println()
     }
 
@@ -17,4 +28,5 @@ object ResultView {
     }
 
     private fun Int.toHyphenString(): String = "-".repeat(this)
+
 }

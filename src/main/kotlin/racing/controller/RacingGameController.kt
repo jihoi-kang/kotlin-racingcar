@@ -1,10 +1,11 @@
 package racing.controller
 
 import racing.domain.AdvanceChecker
+import racing.domain.AdvanceRecorder
+import racing.domain.DefaultNumberGenerator
 import racing.domain.RacingGame
 import racing.domain.RacingGameWinnerFinder
 import racing.domain.TryChecker
-import racing.domain.DefaultNumberGenerator
 import racing.view.InputView
 import racing.view.ResultView
 
@@ -14,17 +15,14 @@ class RacingGameController {
         val params = InputView.getParams()
         val racingGame = RacingGame(
             cars = params.cars,
+            recorder = AdvanceRecorder(),
             tryChecker = TryChecker(params.tryNumber),
             winnerFinder = RacingGameWinnerFinder(),
             advanceChecker = AdvanceChecker(DefaultNumberGenerator)
         )
 
-        ResultView.printStart()
-        while (racingGame.hasTryNumber()) {
-            racingGame.tryAdvance()
-            ResultView.print(racingGame.cars)
-        }
-
+        racingGame.play()
+        ResultView.printResult(racingGame.recorder.records)
         ResultView.printWinner(racingGame.getWinner())
     }
 
